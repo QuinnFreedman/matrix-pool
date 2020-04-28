@@ -34,7 +34,7 @@ where
 any time to end the game, so we could use less than 15 numbers.
 * *P(n, k)* = the number of possible permutations.
 
-![formula](https://render.githubusercontent.com/render/math?math=\sum_{k=0}^{15}{\frac{n!}{(n-k)!}}=3554627472076\approx3.5\times10^12\approx2^42)
+![formula](https://render.githubusercontent.com/render/math?math=\sum_{k=0}^{15}{\frac{15!}{(15-k)!}}=3554627472076\approx3.5\times10^12\approx2^42)
 
 That's a lot of possibilities! (About 3 trillion) Computers are really fast but 
 even using multiple powerful computers to check every possible permutation could
@@ -53,10 +53,8 @@ code does the trick:
 ```python
 # calculates the cumulative score after each number in the given order
 def apply_rules(order):
-    # keep track of how many points we have after each number in the order
-    cumulative_score = []
-    # keep track what the last number in the order was
-    last_number = None
+    cumulative_score = []  # keep track of how many points we have after each number in the order
+    last_number = None     # keep track what the last number in the order was
     for n in order:
         if last_number is None:
             cumulative_score.apend(n)
@@ -177,7 +175,7 @@ A saw tooth function is basicially just a constant-slope line wrapped around (or
 
 ![formula](https://render.githubusercontent.com/render/math?math=y=mx\%2Bb\mod{15})
 
-This function has 2 parameters we can adjust (*m* -- the slope, and *b* -- the
+This function has 2 parameters we can adjust (![m](https://render.githubusercontent.com/render/math?math=m) -- the slope, and ![b](https://render.githubusercontent.com/render/math?math=b) -- the
 starting point). Before we can start tweaking those parameters, though, we
 have to deal with the fact that these
 saw tooths are a little more complicated because they can only use each number
@@ -255,7 +253,7 @@ by far are in that little triangle around (4, 4). It turns out that all the
 That is the sequence you get with a slope and starting point of 4. With a slope
 of 4, the sequence will never repeat so you don't have to worry about any of the
 rounding and replacement I mentioned before. In other words, 4 and 15 are
-*coprime*, so 4*x* mod 15 does not repeat over 1 &le; *x* &lt; 15
+*coprime*, so ![4x mod 15](https://render.githubusercontent.com/render/math?math=4x\mod{15}) does not repeat over ![1 &le; x &le; 15](https://render.githubusercontent.com/render/math?math=1\le{x}\le15)
 
 And how many points is it worth? `2796160`! Here's how it compares to our
 previous best solutions.
@@ -271,7 +269,7 @@ follow a saw-tooth pattern, so it seems likely that that is the optimal
 solution.
 
 Among saw-tooth functions with a close-to-linear slope, it seems very likely
-that 4*x*+4 mod 15 is the best solution. The 400x400 matrix plots almost
+that ![4x + 4 mod 15](https://render.githubusercontent.com/render/math?math=4x\%2B4\mod{15}) is the best solution. The 400x400 matrix plots almost
 certainly covered every similar saw-tooth function. The only thing it might not
 have covered is a very non-linear sequence: something that starts like `[1, 2, 4,
 15...]`. However, it is unlikely that such a pattern would yield a bigger score
